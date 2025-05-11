@@ -49,19 +49,6 @@ npm run dev:cli -- check-traffic --domain "example.com" --mode "subdomains"
 # Analyze website traffic for a specific country
 npm run dev:cli -- check-traffic --domain "example.com" --mode "exact" --country "uk"
 
-# ----------------------------------------------
-# CLOUDFLARE CDN INTEGRATION
-# REMEMBER TO SET THE ENVIRONMENT VARIABLES
-# > See example at ".env.example" file
-# ----------------------------------------------
-
-# You can configure Cloudflare CDN integration by setting the following environment variables:
-# - CLOUDFLARE_CDN_PROJECT_NAME
-# - CLOUDFLARE_CDN_ACCESS_KEY
-# - CLOUDFLARE_CDN_SECRET_KEY
-# - CLOUDFLARE_CDN_BUCKET_NAME
-# - CLOUDFLARE_CDN_ENDPOINT_URL
-# - CLOUDFLARE_CDN_BASE_URL
 ```
 
 ### MCP Setup
