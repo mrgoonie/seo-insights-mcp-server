@@ -34,8 +34,14 @@ npm run dev:cli -- generate-keywords --keyword "seo tools" --country "us"
 # Check keyword difficulty
 npm run dev:cli -- check-keyword-difficulty --keyword "seo analytics" --country "us"
 
+# Check keyword difficulty with specific search engine
+npm run dev:cli -- check-keyword-difficulty --keyword "content marketing" --country "us" --search-engine "Google"
+
 # Analyze website traffic
 npm run dev:cli -- check-traffic --domain "example.com" --mode "subdomains"
+
+# Analyze website traffic for a specific country
+npm run dev:cli -- check-traffic --domain "example.com" --mode "exact" --country "uk"
 
 # ----------------------------------------------
 # CLOUDFLARE CDN INTEGRATION
@@ -156,16 +162,73 @@ When using HTTP transport, the server will be available at http://127.0.0.1:8080
 
 ---
 
-## Step 3: Test the SEO Tool
+## Step 3: Test the SEO Tools
 
-Take a SEO tool using the CLI:
+Test the various SEO tools using the CLI:
 
 ```bash
-# Basic backlinks
+# Get backlinks for a domain
 npm run dev:cli -- get-backlinks --domain "example.com"
 
-# Advanced options
-npm run dev:cli -- keyword-generator --keyword "seo tools" --country "us"
+# Generate keyword ideas
+npm run dev:cli -- generate-keywords --keyword "seo tools" --country "us"
+
+# Check keyword difficulty
+npm run dev:cli -- check-keyword-difficulty --keyword "seo analytics" --country "us"
+
+# Analyze website traffic
+npm run dev:cli -- check-traffic --domain "example.com" --mode "subdomains"
+```
+
+### Example Responses
+
+#### Keyword Difficulty Check
+
+```json
+{
+  "keyword": "seo analytics",
+  "difficulty": 72,
+  "volume": 1200,
+  "cpc": 5.25,
+  "serp": [
+    {
+      "position": 1,
+      "title": "SEO Analytics: The Complete Guide",
+      "url": "https://example.com/seo-analytics-guide",
+      "domain": "example.com"
+    },
+    {
+      "position": 2,
+      "title": "Top 10 SEO Analytics Tools for 2025",
+      "url": "https://example.com/seo-analytics-tools",
+      "domain": "example.com"
+    }
+  ]
+}
+```
+
+#### Traffic Analysis
+
+```json
+{
+  "domain": "example.com",
+  "organicTraffic": 125000,
+  "paidTraffic": 15000,
+  "topPages": [
+    {
+      "url": "https://example.com/blog/seo-guide",
+      "traffic": 12500,
+      "keywords": 145
+    },
+    {
+      "url": "https://example.com/tools/keyword-research",
+      "traffic": 8700,
+      "keywords": 98
+    }
+  ],
+  "trafficTrend": "increasing",
+  "growthRate": 15.4
+}
 ```
 
 ---
