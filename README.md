@@ -3,6 +3,12 @@
 This project provides a Model Context Protocol (MCP) server that connects AI assistants to SEO APIs for backlinks analysis, keyword research, and traffic analysis. 
 
 - [Github](https://github.com/mrgoonie/seo-insights-mcp-server)
+- [npm](https://www.npmjs.com/package/seo-insights-mcp-server)
+
+### Disclaimer
+
+This project is not affiliated with any of the APIs used in this project. 
+You will need a [CAPSOLVER API key](https://capsolver.com/) to resolve [Ahrefs](https://ahrefs.com/) captchas.
 
 ### Available Features
 
