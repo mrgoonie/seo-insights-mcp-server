@@ -1,0 +1,71 @@
+## Development rules
+
+- always analyze the source code structure and logic carefully before proposing efficient solutions
+- always check the docs for latest updates
+- always use try-catch for fallback error handling
+- always use zod for validation, write zod schemas in a separate file to make it easy to share
+- the user is pretty upset, don't make mistakes!
+
+## ScreenshotOne.com API Docs
+
+- [Website](https://screenshotone.com)
+- [API Docs](https://screenshotone.com/docs/getting-started/)
+
+## MCP
+
+- Introduction: https://modelcontextprotocol.io/introduction
+- Architecture: https://modelcontextprotocol.io/specification/2025-03-26/architecture
+- Specification: https://modelcontextprotocol.io/specification/2025-03-26
+- Transports: https://modelcontextprotocol.io/specification/2025-03-26/basic/transports
+- Authorization: https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization
+- Server features: https://modelcontextprotocol.io/specification/2025-03-26/server
+- Typescript SDK: https://github.com/modelcontextprotocol/typescript-sdk
+- MCP Inspector: https://github.com/modelcontextprotocol/inspector
+
+## Project Structure
+
+```
+src/
+├── cli/              # Command-line interfaces
+├── controllers/      # Business logic
+├── resources/        # MCP resources: expose data and content from your servers to LLMs
+├── services/         # External API interactions
+├── tools/            # MCP tool definitions
+├── types/            # Type definitions
+├── utils/            # Shared utilities
+└── index.ts          # Entry point
+```
+
+## Layers and Responsibilities
+
+### CLI Layer (`src/cli/*.cli.ts`)
+
+- **Purpose**: Define command-line interfaces that parse arguments and call controllers
+- **Naming**: Files should be named `<feature>.cli.ts`
+- **Testing**: CLI integration tests in `<feature>.cli.test.ts`
+
+### Tools Layer (`src/tools/*.tool.ts`)
+
+- **Purpose**: Define MCP tools with schemas and descriptions for AI assistants
+- **Naming**: Files should be named `<feature>.tool.ts` with types in `<feature>.types.ts`
+- **Pattern**: Each tool should use zod for argument validation
+
+### Controllers Layer (`src/controllers/*.controller.ts`)
+
+- **Purpose**: Implement business logic, handle errors, and format responses
+- **Naming**: Files should be named `<feature>.controller.ts`
+- **Pattern**: Should return standardized `ControllerResponse` objects
+
+### Services Layer (`src/services/*.service.ts`)
+
+- **Purpose**: Interact with external APIs or data sources
+- **Naming**: Files should be named `<feature>.service.ts`
+- **Pattern**: Pure API interactions with minimal logic
+
+### Utils Layer (`src/utils/*.util.ts`)
+
+- **Purpose**: Provide shared functionality across the application
+- **Key Utils**:
+    - `logger.util.ts`: Structured logging
+    - `error.util.ts`: Error handling and standardization
+    - `formatter.util.ts`: Markdown formatting helpers

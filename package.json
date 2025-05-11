@@ -1,0 +1,160 @@
+{
+	"name": "screenshotone-mcp-server",
+	"version": "1.0.0",
+	"description": "TypeScript Model Context Protocol (MCP) server for ScreenshotOne. Includes CLI support and extensible structure for connecting AI systems (LLMs) to ScreenshotOne API",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"_moduleNotes": "Although source code uses ESM syntax, the build output target is CommonJS to align with Node.js compatibility and patterns seen in related MCP servers. tsconfig.json's 'module': 'NodeNext' handles the input syntax, while tsc outputs CJS.",
+	"type": "commonjs",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mrgoonie/screenshotone-mcp-server.git"
+	},
+	"bin": {
+		"mcp-server": "./dist/index.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"test": "jest --passWithNoTests",
+		"test:coverage": "jest --coverage",
+		"lint": "eslint src --ext .ts --config eslint.config.mjs",
+		"format": "prettier --write 'src/**/*.ts' 'scripts/**/*.js'",
+		"publish:npm": "npm publish",
+		"update:check": "npx npm-check-updates",
+		"update:deps": "npx npm-check-updates -u && npm install --legacy-peer-deps",
+		"update:version": "node scripts/update-version.js",
+		"dev:server": "DEBUG=true npm run build && node dist/index.js",
+		"dev:server:http": "DEBUG=true npm run build && node dist/index.js --transport http",
+		"dev:cli": "DEBUG=true npm run build && DEBUG=true node dist/index.js",
+		"start:server": "npm run build && npx @modelcontextprotocol/inspector node dist/index.js",
+		"start:server:http": "node dist/index.js --transport http",
+		"start:inspector": "npx @modelcontextprotocol/inspector",
+		"start:cli": "npm run build && node dist/index.js",
+		"inspector": "npx @modelcontextprotocol/inspector"
+	},
+	"keywords": [
+		"mcp",
+		"model context protocol",
+		"typescript",
+		"claude",
+		"anthropic",
+		"ai",
+		"boilerplate",
+		"server",
+		"model-context-protocol",
+		"tools",
+		"resources",
+		"tooling",
+		"ai-integration",
+		"mcp-server",
+		"llm",
+		"ai-connector",
+		"external-tools",
+		"cli",
+		"mcp-inspector"
+	],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@eslint/js": "^9.25.1",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/exec": "^7.0.3",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/github": "^11.0.2",
+		"@semantic-release/npm": "^12.0.1",
+		"@types/bcrypt": "^5.0.2",
+		"@types/content-type": "^1.1.8",
+		"@types/cors": "^2.8.17",
+		"@types/express": "^5.0.1",
+		"@types/humanize-duration": "^3.27.4",
+		"@types/jest": "^29.5.14",
+		"@types/lodash": "^4.17.16",
+		"@types/node": "^22.15.3",
+		"@typescript-eslint/eslint-plugin": "^8.31.1",
+		"@typescript-eslint/parser": "^8.31.1",
+		"eslint": "^9.25.1",
+		"eslint-config-prettier": "^10.1.2",
+		"eslint-plugin-prettier": "^5.2.6",
+		"jest": "^29.7.0",
+		"nodemon": "^3.1.10",
+		"npm-check-updates": "^18.0.1",
+		"prettier": "^3.5.3",
+		"semantic-release": "^24.2.3",
+		"ts-jest": "^29.3.2",
+		"ts-node": "^10.9.2",
+		"tsc-alias": "^1.8.16",
+		"tsconfig-paths": "^4.2.0",
+		"typescript": "^5.8.3",
+		"typescript-eslint": "^8.31.1"
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/",
+		"access": "public"
+	},
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.803.0",
+		"@aws-sdk/node-http-handler": "^3.374.0",
+		"@modelcontextprotocol/sdk": "^1.11.0",
+		"axios": "^1.9.0",
+		"bcrypt": "^5.1.1",
+		"commander": "^13.1.0",
+		"content-type": "^1.0.5",
+		"cors": "^2.8.5",
+		"dayjs": "^1.11.13",
+		"diginext-utils": "^3.13.8",
+		"dotenv": "^16.5.0",
+		"express": "^5.1.0",
+		"humanize-duration": "^3.32.1",
+		"jimp": "^1.6.0",
+		"lodash": "^4.17.21",
+		"module-alias": "^2.2.3",
+		"zod": "^3.24.3"
+	},
+	"directories": {
+		"example": "examples"
+	},
+	"jest": {
+		"preset": "ts-jest",
+		"testEnvironment": "node",
+		"testMatch": [
+			"**/src/**/*.test.ts"
+		],
+		"collectCoverageFrom": [
+			"src/**/*.ts",
+			"!src/**/*.test.ts",
+			"!src/**/*.spec.ts"
+		],
+		"coveragePathIgnorePatterns": [
+			"/node_modules/",
+			"/dist/",
+			"/coverage/"
+		],
+		"coverageReporters": [
+			"text",
+			"lcov",
+			"json-summary"
+		],
+		"transform": {
+			"^.+\\.tsx?$": [
+				"ts-jest",
+				{
+					"useESM": true
+				}
+			]
+		},
+		"moduleNameMapper": {
+			"(.*)\\.(js|jsx)$": "$1"
+		},
+		"extensionsToTreatAsEsm": [
+			".ts"
+		],
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json",
+			"node"
+		]
+	}
+}

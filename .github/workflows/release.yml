@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  # Run on pushes to main branch (after PR is merged)
+  push:
+    branches: [main]
+  # Also run on workflow_dispatch to manually trigger
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Needed for creating releases
+      issues: write    # Needed for commenting on issues
+      pull-requests: write  # Needed for commenting on PRs
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Important for semantic-release to analyze all commits
+          token: ${{ secrets.PAT }}  # Use PAT for checkout to enable pushing
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build
+        run: npm run build
+      
+      - name: Set executable permissions
+        run: chmod +x dist/index.js || true
+      
+      - name: Configure Git
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+      
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
