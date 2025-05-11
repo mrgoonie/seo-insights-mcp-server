@@ -31,23 +31,25 @@ You will need a [CAPSOLVER API key](https://capsolver.com/) to resolve [Ahrefs](
 ### CLI
 
 ```bash
+# Analyze website traffic
+npm run dev:cli -- get-traffic --domain "example.com"
+# Equivalent to
+npm run dev:cli -- get-traffic --domain "example.com" --mode "subdomains"
+
+# Analyze website traffic for a specific country
+npm run dev:cli -- get-traffic --domain "example.com" --mode "exact" --country "uk"
+
 # Get backlinks for a domain
 npm run dev:cli -- get-backlinks --domain "example.com"
 
 # Generate keyword ideas
-npm run dev:cli -- generate-keywords --keyword "seo tools" --country "us"
+npm run dev:cli -- keyword-generator --keyword "seo tools" --country "us"
+
+# Generate keyword ideas with specific search engine
+npm run dev:cli -- keyword-generator --keyword "seo tools" --country "us" --search-engine "Google"
 
 # Check keyword difficulty
-npm run dev:cli -- check-keyword-difficulty --keyword "seo analytics" --country "us"
-
-# Check keyword difficulty with specific search engine
-npm run dev:cli -- check-keyword-difficulty --keyword "content marketing" --country "us" --search-engine "Google"
-
-# Analyze website traffic
-npm run dev:cli -- check-traffic --domain "example.com" --mode "subdomains"
-
-# Analyze website traffic for a specific country
-npm run dev:cli -- check-traffic --domain "example.com" --mode "exact" --country "uk"
+npm run dev:cli -- keyword-difficulty --keyword "seo analytics" --country "us"
 
 ```
 
@@ -170,7 +172,7 @@ npm run dev:cli -- generate-keywords --keyword "seo tools" --country "us"
 npm run dev:cli -- check-keyword-difficulty --keyword "seo analytics" --country "us"
 
 # Analyze website traffic
-npm run dev:cli -- check-traffic --domain "example.com" --mode "subdomains"
+npm run dev:cli -- get-traffic --domain "example.com" --mode "subdomains"
 ```
 
 ### Example Responses
