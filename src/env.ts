@@ -4,7 +4,7 @@ import z from 'zod';
 dotenv.config();
 
 export const envSchema = z.object({
-	SCREENSHOTONE_ACCESS_KEY: z.string(),
+	CAPSOLVER_API_KEY: z.string(),
 	CLOUDFLARE_CDN_PROJECT_NAME: z.string(),
 	CLOUDFLARE_CDN_ACCESS_KEY: z.string().optional(),
 	CLOUDFLARE_CDN_SECRET_KEY: z.string().optional(),

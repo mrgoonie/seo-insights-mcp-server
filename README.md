@@ -1,34 +1,23 @@
-# ScreenshotOne.com - MCP Server
+# SEO Insights MCP Server
 
-This project provides a Model Context Protocol (MCP) server that connects AI assistants to [ScreenshotOne.com](https://screenshotone.com) API to capture screenshots of websites. 
+This project provides a Model Context Protocol (MCP) server that connects AI assistants to SEO APIs for backlinks analysis, keyword research, and traffic analysis. 
 
-- [Github](https://github.com/mrgoonie/screenshotone-mcp-server)
-- [NPM](https://www.npmjs.com/package/screenshotone-mcp-server)
+- [Github](https://github.com/mrgoonie/seo-insights-mcp-server)
 
 ### Available Features
-- [x] Take screenshots of any URL
-- [x] Render HTML content and take screenshots
-- [x] Customize viewport size and device emulation
-- [x] Capture full-page screenshots
-- [x] Select specific elements using CSS selectors
-- [x] Multiple output formats (PNG, JPEG, WebP, PDF)
-- [x] Block ads, trackers, and cookie banners
-- [x] Inject custom CSS and JavaScript
-- [x] Control wait behavior and timing
 
-## ScreenshotOne.com
-
-- [Website](https://screenshotone.com)
-- [Playground](https://screenshotone.com/playground)
-- [API Docs](https://screenshotone.com/docs/getting-started/)
-- Create your API key [here](https://dash.screenshotone.com/access)
+#### SEO Tools
+- [x] Get backlinks list for any domain
+- [x] Generate keyword ideas for any seed keyword
+- [x] Check keyword difficulty and SERP analysis
+- [x] Analyze website traffic and top performing content
 
 ## Supported Transports
 
 - [x] ["stdio"](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#stdio) transport - Default transport for CLI usage
 - [x] ["Streamable HTTP"](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http) transport - For web-based clients
   - [ ] Implement auth ("Authorization" headers with `Bearer <token>`)
-- [ ] ~~"sse" transport~~ **[(Deprecated)](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#backwards-compatibility)**
+- [x] ~~"sse" transport~~ **[(Deprecated)](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#backwards-compatibility)**
 - [ ] Write tests
 
 ## How to use
@@ -36,35 +25,31 @@ This project provides a Model Context Protocol (MCP) server that connects AI ass
 ### CLI
 
 ```bash
-# Take a screenshot of a URL
-npm run dev:cli -- take-screenshot --url "https://example.com" --access-key "your-access-key"
+# Get backlinks for a domain
+npm run dev:cli -- get-backlinks --domain "example.com"
 
-# Take a screenshot with custom viewport
-npm run dev:cli -- take-screenshot --url "https://example.com" --viewport-width 1920 --viewport-height 1080
+# Generate keyword ideas
+npm run dev:cli -- generate-keywords --keyword "seo tools" --country "us"
 
-# Capture a full page screenshot
-npm run dev:cli -- take-screenshot --url "https://example.com" --full-page
+# Check keyword difficulty
+npm run dev:cli -- check-keyword-difficulty --keyword "seo analytics" --country "us"
 
-# Save the screenshot to a file
-npm run dev:cli -- take-screenshot --url "https://example.com" --output screenshot.png
-
-# Block ads and trackers
-npm run dev:cli -- take-screenshot --url "https://example.com" --block-ads --block-trackers --block-cookie-banners
+# Analyze website traffic
+npm run dev:cli -- check-traffic --domain "example.com" --mode "subdomains"
 
 # ----------------------------------------------
-# UPLOAD SCREENSHOT TO CLOUDFLARE
+# CLOUDFLARE CDN INTEGRATION
 # REMEMBER TO SET THE ENVIRONMENT VARIABLES
 # > See example at ".env.example" file
 # ----------------------------------------------
 
-# Take a screenshot and upload it to Cloudflare
-npm run dev:cli -- take-screenshot --url https://example.com --upload
-
-# Take a screenshot with a custom filename
-npm run dev:cli -- take-screenshot --url https://example.com --upload --upload-filename my-screenshot
-
-# Take a screenshot with upload debugging enabled
-npm run dev:cli -- take-screenshot --url https://example.com --upload --upload-debug
+# You can configure Cloudflare CDN integration by setting the following environment variables:
+# - CLOUDFLARE_CDN_PROJECT_NAME
+# - CLOUDFLARE_CDN_ACCESS_KEY
+# - CLOUDFLARE_CDN_SECRET_KEY
+# - CLOUDFLARE_CDN_BUCKET_NAME
+# - CLOUDFLARE_CDN_ENDPOINT_URL
+# - CLOUDFLARE_CDN_BASE_URL
 ```
 
 ### MCP Setup
@@ -73,9 +58,9 @@ npm run dev:cli -- take-screenshot --url https://example.com --upload --upload-d
 ```json
 {
   "mcpServers": {
-    "screenshotone": {
+    "seo-insights": {
       "command": "node",
-      "args": ["/path/to/screenshotone-mcp-server/dist/index.js"],
+      "args": ["/path/to/seo-insights-mcp-server/dist/index.js"],
       "transportType": "stdio"
     }
   }
@@ -86,7 +71,7 @@ npm run dev:cli -- take-screenshot --url https://example.com --upload --upload-d
 ```json
 {
   "mcpServers": {
-    "screenshotone": {
+    "seo-insights": {
       "type": "http",
       "url": "http://localhost:8080/mcp"
     }
@@ -139,8 +124,8 @@ This boilerplate implements the MCP specification with a clean, layered architec
 
 ```bash
 # Clone the repository
-git clone https://github.com/mrgoonie/screenshotone-mcp-server.git
-cd screenshotone-mcp-server
+git clone https://github.com/mrgoonie/seo-insights-mcp-server.git
+cd seo-insights-mcp-server
 
 # Install dependencies
 npm install
@@ -171,16 +156,16 @@ When using HTTP transport, the server will be available at http://127.0.0.1:8080
 
 ---
 
-## Step 3: Test the Screenshot Tool
+## Step 3: Test the SEO Tool
 
-Take a screenshot using the CLI:
+Take a SEO tool using the CLI:
 
 ```bash
-# Basic screenshot
-npm run dev:cli -- take-screenshot --url "https://example.com" --access-key "your-access-key"
+# Basic backlinks
+npm run dev:cli -- get-backlinks --domain "example.com"
 
 # Advanced options
-npm run dev:cli -- take-screenshot --url "https://example.com" --format png --viewport-width 1920 --viewport-height 1080 --full-page --output screenshot.png
+npm run dev:cli -- keyword-generator --keyword "seo tools" --country "us"
 ```
 
 ---
@@ -485,13 +470,13 @@ When ready to publish your custom MCP server:
 
 ```json
 {
-	"screenshotone": {
+	"seo-insights": {
 		"environments": {
 			"DEBUG": "true",
-			"SCREENSHOTONE_ACCESS_KEY": "value"
+			"CAPSOLVER_API_KEY": "your-api-key"
 		}
 	}
 }
 ```
 
-**Note:** For backward compatibility, the server will also recognize configurations under the full package name (`screenshotone-mcp-server`) or the unscoped package name (`screenshotone-mcp-server`) if the `screenshotone` key is not found. However, using the short `screenshotone` key is recommended for new configurations.
+**Note:** For backward compatibility, the server will also recognize configurations under the full package name (`seo-insights-mcp-server`) or the unscoped package name (`seo-insights-mcp-server`) if the `seo-insights` key is not found. However, using the short `seo-insights` key is recommended for new configurations.

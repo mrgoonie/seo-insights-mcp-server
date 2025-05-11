@@ -15,10 +15,10 @@ export const VERSION = '1.0.0';
  * Package name with scope
  * Used for initialization and identification
  */
-export const PACKAGE_NAME = 'screenshotone-mcp-server';
+export const PACKAGE_NAME = 'seo-insights-mcp-server';
 
 /**
  * CLI command name
  * Used for binary name and CLI help text
  */
-export const CLI_NAME = 'screenshotone-mcp-server';
+export const CLI_NAME = 'seo-insights-mcp-server';

@@ -61,7 +61,7 @@
 				"addReleases": "bottom",
 				"releaseNameTemplate": "Release v${nextRelease.version}",
 				"releaseTitleTemplate": "Release v${nextRelease.version}",
-				"successComment": "🎉 This PR is part of the release [v${nextRelease.version}](https://github.com/mrgoonie/screenshotone-mcp-server/releases/tag/v${nextRelease.version})",
+				"successComment": "🎉 This PR is part of the release [v${nextRelease.version}](https://github.com/mrgoonie/seo-insights-mcp-server/releases/tag/v${nextRelease.version})",
 				"failTitle": "The automated release failed",
 				"failComment": "The automated release from this PR failed. Please check the logs for more details."
 			}

@@ -2,16 +2,16 @@ import { Command } from 'commander';
 import { Logger } from '../utils/logger.util.js';
 import { VERSION, CLI_NAME } from '../utils/constants.util.js';
 
-import screenshotOneCli from './screenshotone.cli.js';
+import seoCli from './seo.cli.js';
 
 /**
- * CLI entry point for the ScreenshotOne MCP Server
+ * CLI entry point for the SEO Insights MCP Server
  * Handles command registration, parsing, and execution
  */
 
 // Package description
 const DESCRIPTION =
-	'A Model Context Protocol (MCP) server for ScreenshotOne, to help AI assistants take screenshots of webpages';
+	'A Model Context Protocol (MCP) server for SEO Insights, providing SEO tools for backlinks, keyword research, and traffic analysis for AI assistants';
 
 /**
  * Run the CLI with the provided arguments
@@ -29,7 +29,7 @@ export async function runCli(args: string[]) {
 
 	// Register CLI commands
 	cliLogger.debug('Registering CLI commands...');
-	screenshotOneCli.register(program);
+	seoCli.register(program);
 	cliLogger.debug('CLI commands registered successfully');
 
 	// Handle unknown commands

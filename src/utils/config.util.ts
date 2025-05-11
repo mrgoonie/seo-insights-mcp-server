@@ -91,7 +91,7 @@ class ConfigLoader {
 			const config = JSON.parse(configContent);
 
 			// Determine the potential keys for the current package
-			const shortKey = 'screenshotone'; // Project-specific short key
+			const shortKey = 'seo-insights'; // Project-specific short key
 			const fullPackageName = this.packageName; // e.g., '@aashari/boilerplate-mcp-server'
 			const unscopedPackageName =
 				fullPackageName.split('/')[1] || fullPackageName; // e.g., 'boilerplate-mcp-server'
@@ -196,4 +196,4 @@ class ConfigLoader {
 }
 
 // Create and export a singleton instance with the package name from package.json
-export const config = new ConfigLoader('screenshotone-mcp-server');
+export const config = new ConfigLoader('seo-insights-mcp-server');

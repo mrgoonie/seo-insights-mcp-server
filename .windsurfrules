@@ -6,11 +6,6 @@
 - always use zod for validation, write zod schemas in a separate file to make it easy to share
 - the user is pretty upset, don't make mistakes!
 
-## ScreenshotOne.com API Docs
-
-- [Website](https://screenshotone.com)
-- [API Docs](https://screenshotone.com/docs/getting-started/)
-
 ## MCP
 
 - Introduction: https://modelcontextprotocol.io/introduction

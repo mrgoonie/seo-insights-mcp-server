@@ -55,32 +55,6 @@ export function getIpApiCredentials(): IpApiCredentials {
 }
 
 /**
- * Retrieves ScreenshotOne credentials from configuration.
- * Specifically checks for SCREENSHOTONE_ACCESS_KEY.
- * @returns IpApiCredentials object containing the API token if found.
- */
-export function getScreenshotOneCredentials(): IpApiCredentials {
-	const methodLogger = Logger.forContext(
-		'utils/transport.util.ts',
-		'getScreenshotOneCredentials',
-	);
-
-	const apiToken = config.get('SCREENSHOTONE_ACCESS_KEY');
-
-	if (!apiToken) {
-		methodLogger.debug(
-			'No ScreenshotOne access key found (SCREENSHOTONE_ACCESS_KEY).',
-		);
-		return {}; // Return empty object if no token
-	} else {
-		methodLogger.debug(
-			'Using ScreenshotOne access key from configuration.',
-		);
-		return { apiToken };
-	}
-}
-
-/**
  * Fetches data specifically from the ip-api.com endpoint.
  * Handles URL construction, authentication (if token provided), and query parameters.
  * Relies on the generic fetchApi function for the actual HTTP request.

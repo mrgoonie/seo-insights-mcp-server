@@ -1,14 +1,14 @@
 {
-	"name": "screenshotone-mcp-server",
+	"name": "seo-insights-mcp-server",
 	"version": "1.0.0",
-	"description": "TypeScript Model Context Protocol (MCP) server for ScreenshotOne. Includes CLI support and extensible structure for connecting AI systems (LLMs) to ScreenshotOne API",
+	"description": "TypeScript Model Context Protocol (MCP) server for SEO Insights. Provides SEO tools for backlinks, keyword research, and traffic analysis. Includes CLI support and extensible structure for connecting AI systems (LLMs) to SEO APIs",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"_moduleNotes": "Although source code uses ESM syntax, the build output target is CommonJS to align with Node.js compatibility and patterns seen in related MCP servers. tsconfig.json's 'module': 'NodeNext' handles the input syntax, while tsc outputs CJS.",
 	"type": "commonjs",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/mrgoonie/screenshotone-mcp-server.git"
+		"url": "https://github.com/mrgoonie/seo-insights-mcp-server.git"
 	},
 	"bin": {
 		"mcp-server": "./dist/index.js"

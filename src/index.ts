@@ -12,13 +12,14 @@ import { randomUUID } from 'crypto';
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
 
 // Import tools and resources
-import screenshotOneTools from './tools/screenshotone.tool.js';
+import seoTools from './tools/seo.tool.js';
 import { InMemoryEventStore } from '@modelcontextprotocol/sdk/examples/shared/inMemoryEventStore.js';
 
 /**
- * ScreenshotOne MCP Server
+ * SEO Insights MCP Server
  *
  * A project for building MCP servers that follow best practices.
+ * Provides SEO tools for backlinks analysis, keyword research, and traffic analysis.
  * Demonstrates proper structure, logging, error handling, and MCP protocol integration.
  */
 
@@ -26,7 +27,7 @@ import { InMemoryEventStore } from '@modelcontextprotocol/sdk/examples/shared/in
 const indexLogger = Logger.forContext('index.ts');
 
 // Log initialization at debug level
-indexLogger.debug('ScreenshotOne MCP server module loaded');
+indexLogger.debug('SEO Insights MCP server module loaded');
 
 let serverInstance: McpServer | null = null;
 let expressApp: express.Application | null = null;
@@ -61,7 +62,7 @@ export async function startServer(mode: 'stdio' | 'http' = 'stdio') {
 	);
 	serverLogger.debug(`Config DEBUG value: ${config.get('DEBUG')}`);
 
-	serverLogger.info(`Initializing ScreenshotOne MCP server v${VERSION}`);
+	serverLogger.info(`Initializing SEO Insights MCP server v${VERSION}`);
 	serverInstance = new McpServer({
 		name: PACKAGE_NAME,
 		version: VERSION,
@@ -69,8 +70,8 @@ export async function startServer(mode: 'stdio' | 'http' = 'stdio') {
 
 	// Register tools and resources
 	serverLogger.info('Registering tools and resources...');
-	screenshotOneTools.register(serverInstance);
-	serverLogger.debug('Registered ScreenshotOne tools');
+	seoTools.register(serverInstance);
+	serverLogger.debug('Registered SEO tools');
 	serverLogger.info('All tools and resources registered successfully');
 
 	if (mode === 'stdio') {
