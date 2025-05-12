@@ -96,7 +96,7 @@
 		"@aws-sdk/node-http-handler": "^3.374.0",
 		"@modelcontextprotocol/sdk": "^1.11.0",
 		"axios": "^1.9.0",
-		"bcrypt": "^5.1.1",
+		"bcrypt": "^6.0.0",
 		"commander": "^13.1.0",
 		"content-type": "^1.0.5",
 		"cors": "^2.8.5",
