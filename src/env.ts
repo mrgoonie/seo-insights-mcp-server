@@ -4,13 +4,13 @@ import z from 'zod';
 dotenv.config();
 
 export const envSchema = z.object({
-	CAPSOLVER_API_KEY: z.string(),
-	CLOUDFLARE_CDN_PROJECT_NAME: z.string(),
+	CAPSOLVER_API_KEY: z.string().optional(),
+	CLOUDFLARE_CDN_PROJECT_NAME: z.string().default(''),
 	CLOUDFLARE_CDN_ACCESS_KEY: z.string().optional(),
 	CLOUDFLARE_CDN_SECRET_KEY: z.string().optional(),
-	CLOUDFLARE_CDN_BUCKET_NAME: z.string(),
-	CLOUDFLARE_CDN_ENDPOINT_URL: z.string(),
-	CLOUDFLARE_CDN_BASE_URL: z.string(),
+	CLOUDFLARE_CDN_BUCKET_NAME: z.string().default(''),
+	CLOUDFLARE_CDN_ENDPOINT_URL: z.string().default(''),
+	CLOUDFLARE_CDN_BASE_URL: z.string().default(''),
 });
 export type Env = z.infer<typeof envSchema>;
 
