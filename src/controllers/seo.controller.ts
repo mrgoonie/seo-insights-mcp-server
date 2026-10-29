@@ -4,6 +4,7 @@
  */
 
 import seoService from '../services/vendor.seo.service.js';
+import goanyapiService from '../services/goanyapi.seo.service.js';
 import { Logger } from '../utils/logger.util.js';
 import { ControllerResponse } from '../types/common.types.js';
 import { handleControllerError } from '../utils/error-handler.util.js';
@@ -45,7 +46,9 @@ async function getBacklinks(
 		}
 
 		// Call the service with the parameters
-		const response = await seoService.getBacklinks(params.domain);
+		const response = await (process.env.SEO_PROVIDER === 'goanyapi'
+			? goanyapiService.getBacklinks(params.domain)
+			: seoService.getBacklinks(params.domain));
 
 		methodLogger.debug('Got backlinks response from service');
 
@@ -93,11 +96,17 @@ async function getKeywordIdeas(
 		const searchEngine = params.searchEngine || 'Google';
 
 		// Call the service with the parameters
-		const response = await seoService.getKeywordIdeas(
-			params.keyword,
-			country,
-			searchEngine,
-		);
+		const response = await (process.env.SEO_PROVIDER === 'goanyapi'
+			? goanyapiService.getKeywordIdeas(
+					params.keyword,
+					country,
+					searchEngine,
+				)
+			: seoService.getKeywordIdeas(
+					params.keyword,
+					country,
+					searchEngine,
+				));
 
 		methodLogger.debug('Got keyword ideas response from service');
 
@@ -147,10 +156,9 @@ async function getKeywordDifficulty(
 		const country = params.country || 'us';
 
 		// Call the service with the parameters
-		const response = await seoService.getKeywordDifficulty(
-			params.keyword,
-			country,
-		);
+		const response = await (process.env.SEO_PROVIDER === 'goanyapi'
+			? goanyapiService.getKeywordDifficulty(params.keyword, country)
+			: seoService.getKeywordDifficulty(params.keyword, country));
 
 		methodLogger.debug('Got keyword difficulty response from service');
 
@@ -201,11 +209,9 @@ async function getTraffic(
 		const country = params.country || 'None';
 
 		// Call the service with the parameters
-		const response = await seoService.checkTraffic(
-			params.domainOrUrl,
-			mode,
-			country,
-		);
+		const response = await (process.env.SEO_PROVIDER === 'goanyapi'
+			? goanyapiService.checkTraffic(params.domainOrUrl, mode, country)
+			: seoService.checkTraffic(params.domainOrUrl, mode, country));
 
 		methodLogger.debug('Got traffic data response from service');
 

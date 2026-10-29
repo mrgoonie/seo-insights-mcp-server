@@ -9,6 +9,7 @@ This project provides a Model Context Protocol (MCP) server that connects AI ass
 
 This project is not affiliated with any of the APIs used in this project. 
 You will need a [CAPSOLVER API key](https://capsolver.com/) to resolve [Ahrefs](https://ahrefs.com/) captchas.
+Alternatively, select the [GoAnyAPI](https://goanyapi.com/) provider with a GoAnyAPI API key; it does not use CapSolver.
 
 ### Available Features
 
@@ -27,6 +28,21 @@ You will need a [CAPSOLVER API key](https://capsolver.com/) to resolve [Ahrefs](
 - [ ] Write tests
 
 ## How to use
+
+### Optional GoAnyAPI provider
+
+Set `SEO_PROVIDER=goanyapi` and `GOANYAPI_API_KEY` (get a key at [goanyapi.com](https://goanyapi.com/)). The same four CLI commands and MCP tools then call GoAnyAPI's public REST endpoints. The default provider remains the existing Ahrefs/CapSolver implementation.
+
+```bash
+export SEO_PROVIDER=goanyapi
+export GOANYAPI_API_KEY="your-api-key"
+npm run dev:cli -- get-backlinks --domain example.com
+npm run dev:cli -- keyword-generator --keyword "seo tools" --country us
+npm run dev:cli -- keyword-difficulty --keyword "seo tools" --country us
+npm run dev:cli -- get-traffic --domain example.com
+```
+
+For stdio MCP clients, put both variables in the server's `env` configuration. Results retain GoAnyAPI's API response structure, which differs from the default provider. The GoAnyAPI keyword generator supports Google only. Its traffic endpoint accepts a hostname without a country or `exact` mode; unsupported options return an error instead of being silently ignored. API requests may consume GoAnyAPI credits. Endpoint documentation: [backlinks](https://goanyapi.com/docs/backlink-api), [keyword generator](https://goanyapi.com/docs/keyword-generator-api), [keyword difficulty](https://goanyapi.com/docs/keyword-difficulty-api), [traffic](https://goanyapi.com/docs/traffic-api).
 
 ### CLI
 
